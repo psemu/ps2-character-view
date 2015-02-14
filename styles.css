@@ -1,0 +1,64 @@
+body {
+	font-family: "Futura","Calibri", Arial, Helvetica, sans-serif;
+	background: url('bodyBg4.jpg') center 0 no-repeat;
+	background-color: #000;
+	color: #fff;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#sidebar {
+	position : absolute;
+	float : left;
+	width : 250px;
+	background : rgba(0,0,0,0.1);
+	border : 1px solid rgba(255,255,255,0.2);
+	border-radius : 10px;
+	padding : 20px;
+	margin : 20px;
+	height : 450px;
+	text-align : center;
+}
+
+#listcontainer {
+	overflow-y : auto;
+	overflow-x : hidden;
+	height : 400px;
+	padding : none;
+}
+
+#logo {
+	border : none;
+	margin-bottom : 10px;
+}
+
+#models {
+	list-style : none;
+	padding : 0;
+	margin : 0;
+	text-align : left;
+}
+
+#models li {
+	margin-bottom : 5px;
+	cursor : pointer;
+	padding : 5px;
+	color : rgb(192,192,192);
+}
+
+#models li:hover {
+	background : rgba(255,255,255,0.1);
+	color : rgb(255,255,255);
+}
+
+a {
+	color : inherit;
+}
+
+footer {
+	position : absolute;
+	font-size : 14px;
+	color : rgb(128, 128, 128);
+	bottom : 0;
+	margin : 10px;
+}

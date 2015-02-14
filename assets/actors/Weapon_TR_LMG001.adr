@@ -1,0 +1,56 @@
+<ActorRuntime>
+    <AnimationNetwork fileName="Rifle.mrn" animSetName="TRLMG" />
+    <AnimationEnumerations>
+        <AnimationEnumeration hash="709776765" value="0" />
+        <AnimationEnumeration hash="2031026762" value="10" />
+        <AnimationEnumeration hash="3009471212" value="2" />
+    </AnimationEnumerations>
+    <AnimationValues />
+    <Base fileName="Weapon_TR_LMG001_LOD0.dme" paletteName="Weapon_TR_LMG001_Lod0.dma" updateRadius="300.000000" waterDisplacementHeight="0.000000" objectTerrainDataId="0" />
+    <TextureAliases>
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_DS.dds" modelType="0" materialIndex="0" semanticHash="1716414136" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Shared_Weapons_DN.dds" modelType="0" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Default1" textureName="Shared_Weapons_DN.dds" modelType="0" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_S.dds" modelType="0" materialIndex="0" semanticHash="67211600" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_N.dds" modelType="0" materialIndex="0" semanticHash="789998085" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_C.dds" modelType="0" materialIndex="0" semanticHash="-1295769314" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_DS.dds" modelType="1" materialIndex="0" semanticHash="1716414136" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Shared_Weapons_DN.dds" modelType="1" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Default1" textureName="Shared_Weapons_DN.dds" modelType="1" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_S.dds" modelType="1" materialIndex="0" semanticHash="67211600" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_N.dds" modelType="1" materialIndex="0" semanticHash="789998085" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_C.dds" modelType="1" materialIndex="0" semanticHash="-1295769314" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_DS.dds" modelType="2" materialIndex="0" semanticHash="1716414136" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Shared_Weapons_DN.dds" modelType="2" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Default1" textureName="Shared_Weapons_DN.dds" modelType="2" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_S.dds" modelType="2" materialIndex="0" semanticHash="67211600" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_N.dds" modelType="2" materialIndex="0" semanticHash="789998085" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Weapon_TR_SharedTextures01_C.dds" modelType="2" materialIndex="0" semanticHash="-1295769314" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+    </TextureAliases>
+    <TintAliases />
+    <Lods>
+        <Lod fileName="Weapon_TR_LMG001_LOD0_LODAuto.dme" paletteName="Weapon_TR_LMG001_Lod1.dma" distance="3" />
+        <Lod fileName="InvisibleTriangle_LOD0.dme" paletteName="Weapon_TR_LMG001_Lod2.dma" distance="97" />
+        <Lod distance="300" />
+    </Lods>
+    <CollisionType type="3099813281" />
+    <Usage actorUsage="3" borrowSkeleton="0" boneAttachmentName="R_weapon" validatePcNpc="1" />
+    <HatHair type="Hair" coversFacialHair="0" />
+    <Shadows CheckShadowVisibility="0" />
+    <EquipType EquippedSlotName="RHand" />
+    <ChildAttachSlotsEx>
+        <ChildAttachSlotEx slotName="Barrel" />
+        <ChildAttachSlotEx slotName="BottomRail" />
+        <ChildAttachSlotEx slotName="Clip" />
+        <ChildAttachSlotEx slotName="ForwardGrip" />
+        <ChildAttachSlotEx slotName="IronSightBack" />
+        <ChildAttachSlotEx slotName="IronSightFront" />
+        <ChildAttachSlotEx slotName="RedDot" />
+        <ChildAttachSlotEx slotName="Scope" />
+        <ChildAttachSlotEx slotName="SideRail" />
+    </ChildAttachSlotsEx>
+    <OcclusionData TestModel="Weapon_TR_LMG001_LOD0_test.dmv" SimpleVisibility="0" />
+    <MaterialType type="" />
+    <Invisible value="0" />
+    <DecalTintTranslations />
+</ActorRuntime>

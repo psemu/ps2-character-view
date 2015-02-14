@@ -1,0 +1,34 @@
+<ActorRuntime>
+    <AnimationNetwork fileName="" animSetName="" />
+    <AnimationEnumerations />
+    <AnimationValues />
+    <Base fileName="Helmet_TR_Male_All_PS037_LOD0.dme" paletteName="Helmet_TR_Male_All_PS037_Lod0.dma" updateRadius="400.000000" waterDisplacementHeight="0.000000" objectTerrainDataId="0" />
+    <TextureAliases>
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_DS.dds" modelType="0" materialIndex="0" semanticHash="1716414136" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Shared_Characters_TR.dds" modelType="0" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_S.dds" modelType="0" materialIndex="0" semanticHash="67211600" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_N.dds" modelType="0" materialIndex="0" semanticHash="789998085" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_C.dds" modelType="0" materialIndex="0" semanticHash="-1295769314" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_DS.dds" modelType="1" materialIndex="0" semanticHash="1716414136" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Shared_Characters_TR.dds" modelType="1" materialIndex="0" semanticHash="-125639093" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_S.dds" modelType="1" materialIndex="0" semanticHash="67211600" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_N.dds" modelType="1" materialIndex="0" semanticHash="789998085" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+        <Alias aliasName="default0" textureName="Helmet_TR_Shared_All_C.dds" modelType="1" materialIndex="0" semanticHash="-1295769314" defaultTextureAlias="0" occlusionSlotBitmask="0" />
+    </TextureAliases>
+    <TintAliases />
+    <TintInheritance Camo="1" Decal="1" EmpireTint="0" ExtraTint="0" />
+    <Lods>
+        <Lod fileName="Helmet_TR_Male_All_PS037_LOD0_LODAuto.dme" paletteName="Helmet_TR_Male_All_PS037_Lod1.dma" distance="3" />
+        <Lod distance="35" />
+    </Lods>
+    <CollisionType type="3099813281" />
+    <Usage actorUsage="2" borrowSkeleton="1" validatePcNpc="0" />
+    <HatHair type="Hair" coversFacialHair="0" />
+    <Shadows CheckShadowVisibility="0" />
+    <EquipType EquippedSlotName="Head" />
+    <ChildAttachSlotsEx />
+    <OcclusionData SimpleVisibility="0" />
+    <MaterialType type="FLESH" />
+    <Invisible value="0" />
+    <DecalTintTranslations IsList="1" />
+</ActorRuntime>

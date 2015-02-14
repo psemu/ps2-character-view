@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Model Viewer</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <script src="bundle.js"></script>
+        <script src="three.js"></script>
+        <script src="OBJLoader.js"></script>
+        <script src="OrbitControls.js"></script>
+        <script src="DDSLoader.js"></script>
+        <script src="DMELoader.js"></script>
+        <script src="CopyShader.js"></script>
+        <script src="EffectComposer.js"></script>
+        <script src="RenderPass.js"></script>
+        <script src="ShaderPass.js"></script>
+        <script src="MaskPass.js"></script>
+        <script src="Actor.js"></script>
+        <script src="CharacterShader.js"></script>
+        <script src="Character.js"></script>
+        <script src="BVHLoader.js"></script>
+        <script src="bones.js"></script>
+
+        <script>
+            var Buffer = require("buffer").Buffer;
+            var SOEPack = require("soe-pack");
+            var DME = require("dme");
+            var Jenkins = require("jenkins-hash");
+
+            var loadout = {
+                armor: {
+                    actor: "Armor_TR_Male_HeavyAssault_Look001.adr",
+                    tint: "Abstract_TC.dds"
+                },
+                attachments: [
+                    {
+                        bone: "R_weapon",
+                        actor: "Weapon_TR_LMG001.adr"
+                    }
+                ],
+                head: {
+                    actor: "Head_Male_Asian.adr"
+                },
+                helmet: {
+                    actor: "Helmet_TR_Male_All_PS037.adr",
+                    tint: "Abstract_TC.dds"
+                }
+            };
+
+            var startTime = Date.now();
+
+            function loadFile(url, responseType, callback) {
+                var request = new XMLHttpRequest();
+                request.addEventListener("load", function (event) {
+                    callback(event.target.response);
+                }, false);
+                request.responseType = responseType;
+                request.open("GET", url, true);
+                request.send(null);
+            }
+
+            function loadTexture(filename, callback) {
+                if (!filename) {
+                    callback();
+                    return;
+                }
+                var loader = new THREE.DDSLoader();
+                var texture = loader.load("assets/textures/" + filename, function(texture) {
+                    texture.wrapS = THREE.RepeatWrapping;
+                    texture.wrapT = THREE.RepeatWrapping;
+                    if (callback)
+                        callback(texture);
+                });
+                return texture;
+            }
+
+            var helper;
+            var character;
+
+            function loadCharacter(loadout) {
+                var scale = 6;
+                var meshes = [];
+
+                character = new THREE.Character();
+                
+                scene.add(character);
+
+                character.setBody(loadout.armor.actor, loadout.armor.tint, function() {
+                    character.setHead(loadout.head.actor, function() {
+                        character.setHelmet(loadout.helmet.actor, loadout.helmet.tint, function() {
+                            character.setAttachment(loadout.attachments[0].actor, function() {
+                                character.pose();
+                                character.scale.set(scale, scale, scale);
+                                character.setAnimation("idle_rifle_Take_2.bvh", function() {});
+                            });
+                        });
+                    });
+                });
+
+
+                // loadActor(loadout.head.actor, null, function(actor) {
+
+                //     var obj = new THREE.Object3D();
+                //     obj.scale.set(scale, scale, scale);
+
+                //     for (var i=0;i<actor.meshes.length;i++) {
+                //         var mesh = new THREE.Mesh(actor.meshes[i].geometry, actor.material);
+                //         mesh.castShadow = true;
+                //         mesh.receiveShadow = true;
+                //         obj.add(mesh);
+                //     }
+                //     scene.add(obj);
+                // });
+
+                // loadActor(loadout.helmet.actor, loadout.helmet.tint, function(actor) {
+
+                //     var obj = new THREE.Object3D();
+                //     obj.scale.set(scale, scale, scale);
+
+                //     var boneMap = {};
+                //     buildBoneMap(BoneHierarchy, boneMap);
+
+                //     for (var i=0;i<actor.meshes.length;i++) {
+                //         var geo = actor.meshes[i].geometry;
+
+                //         for (var j=0;j<geo.bones.length;j++) {
+                //             geo.bones[j].parent = lookupBoneParent(boneMap, geo.bones, geo.bones[j].name);
+                //         }
+                //         actor.material.skinning = true;
+                //         var mesh = new THREE.SkinnedMesh( geo, actor.material);
+
+                //         mesh.castShadow = true;
+                //         mesh.receiveShadow = true;
+                //         obj.add(mesh);
+
+                //         mesh.pose();
+
+                //         var helper = new THREE.SkeletonHelper( mesh );
+                //         helper.visible = true;
+                //         scene.add( helper );
+
+                //     }
+                //     scene.add(obj);
+                // });
+            }
+
+            var container;
+            
+            var activeModels = [],
+                activeTexture = null;
+
+            var camera, controls, scene, renderer, composer, helper;
+            
+            var clock = new THREE.Clock();
+
+            init();
+            render();
+            loadCharacter(loadout)
+            //loadAnimation("backflip_back_flip_4.bvh");
+
+            
+            function init() {
+                // renderer
+
+                renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+                renderer.setClearColor( 0x000000, 0);
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+                renderer.gammaInput = true;
+                renderer.gammaOutput = true;
+                renderer.shadowMapEnabled = true;
+                renderer.shadowMapSoft = true;
+                //renderer.shadowMapType = THREE.PCFSoftShadowMap;
+                renderer.shadowMapType = THREE.PCFShadowMap;
+                //renderer.shadowMapCullFace = THREE.CullFaceFront;
+                //renderer.shadowMapCullFace = THREE.CullFaceBack;
+
+                camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1e10 );
+                camera.position.z = 20;
+                camera.position.y = 6;
+
+                controls = new THREE.OrbitControls( camera );
+                controls.maxPolarAngle = controls.minPolarAngle = Math.PI / 2 - 0.1;
+                controls.rotateSpeed = 1.0;
+                controls.zoomSpeed = 5;
+                controls.target.set(-0, 5, 0);
+                scene = new THREE.Scene();
+
+                scene.add( camera );
+
+                // light
+
+                var light1 = new THREE.SpotLight( 0xffffff, 0.5, 500 );
+                light1.position.set( 100, 120, 100 );
+                light1.castShadow = true;
+                light1.shadowMapWidth = 2048;
+                light1.shadowMapHeight = 2048;
+                light1.shadowDarkness = 0.30;
+                //light1.shadowCameraVisible = true;
+                light1.shadowCameraNear    =  120;
+                light1.shadowCameraFar     =  250;
+                light1.shadowCameraFov = 40;
+                light1.shadowBias = 0.002;
+                scene.add(light1);
+
+                var light2 = new THREE.SpotLight( 0xffffff, 1.5, 500 );
+                light2.position.set( -100, 150, 0 );
+                light2.castShadow = true;
+                light2.shadowMapWidth = 2048;
+                light2.shadowMapHeight = 2048;
+                light2.shadowDarkness = 0.30;
+                //light2.shadowCameraVisible = true;
+                light2.shadowCameraNear    =  160;
+                light2.shadowCameraFar     =  250;
+                light2.shadowCameraFov = 40;
+                light2.shadowBias = 0.001;
+                scene.add(light2);
+
+                var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.3 );
+                hemiLight.color.setRGB(1, 0.9, 0.8);
+                hemiLight.groundColor.setHSL( 0.1, 0.8, 0.7 );
+                hemiLight.position.y = 100;
+                scene.add( hemiLight );
+
+
+                var ground = new THREE.Mesh(
+                    new THREE.PlaneGeometry(10, 10), 
+                    new THREE.MeshLambertMaterial({color: 0x003238, shading: THREE.FlatShading, transparent: true, blending: THREE.AdditiveBlending })
+                );
+                ground.rotation.x = - Math.PI / 2;
+                ground.receiveShadow = true;
+
+                scene.add( ground );
+
+
+                // composer = new THREE.EffectComposer( renderer );
+                // var renderModel = new THREE.RenderPass( scene, camera );
+                // composer.addPass( renderModel );
+                // var effect = new THREE.ShaderPass( THREE.CopyShader);
+                // effect.renderToScreen = true;
+                // composer.addPass( effect );
+
+                container = document.createElement( 'div' );
+                document.body.appendChild( container );
+                container.appendChild( renderer.domElement );
+
+                window.addEventListener( 'resize', onWindowResize, false );
+            }
+
+            function onWindowResize() {
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+                //controls.handleResize();
+            }
+
+
+            function render() {
+
+                var delta = 0.75 * clock.getDelta();
+
+                controls.target.x = 0;
+                controls.target.z = 0;
+                controls.target.y = Math.max(0.5, Math.min(10.5, controls.target.y));
+
+                THREE.AnimationHandler.update( delta );
+
+                if (helper) {
+                    helper.update();
+                }
+
+                // if (character) {
+                //     var time = clock.getElapsedTime();
+                //     character.position.set(
+                //         25 * Math.sin(time),
+                //         0,
+                //         25 * Math.cos(time)
+                //     );
+                //     character.rotation.set(0, Math.PI / 2 + time, 0);
+                // }
+
+                //if (Date.now() - startTime < 2000)
+                requestAnimationFrame(render);
+                controls.update();
+                //camera.lookAt(new THREE.Vector3(0,0,0));
+                renderer.render( scene, camera );
+                //composer.render();
+
+                //console.log(helper);
+            }
+
+        </script>
+        
+    </body>
+</html>
+

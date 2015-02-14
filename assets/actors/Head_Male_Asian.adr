@@ -1,0 +1,29 @@
+<ActorRuntime>
+    <AnimationNetwork fileName="" animSetName="" />
+    <AnimationEnumerations />
+    <AnimationValues />
+    <Base fileName="Head_Male_Asian_LOD0.dme" paletteName="Head_Male_Asian_Lod0.dma" updateRadius="150.000000" waterDisplacementHeight="0.000000" objectTerrainDataId="0" />
+    <TextureAliases>
+        <Alias aliasName="Asian" textureName="Head_Male_Asian_S.dds" modelType="0" materialIndex="0" semanticHash="67211600" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Asian" textureName="Head_Male_Asian_N.dds" modelType="0" materialIndex="0" semanticHash="789998085" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Asian" textureName="Head_Male_Asian_C.dds" modelType="0" materialIndex="0" semanticHash="-1295769314" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Asian" textureName="Head_Male_Asian_S.dds" modelType="1" materialIndex="0" semanticHash="67211600" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Asian" textureName="Head_Male_Asian_N.dds" modelType="1" materialIndex="0" semanticHash="789998085" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+        <Alias aliasName="Asian" textureName="Head_Male_Asian_C.dds" modelType="1" materialIndex="0" semanticHash="-1295769314" defaultTextureAlias="1" occlusionSlotBitmask="0" />
+    </TextureAliases>
+    <TintAliases />
+    <Lods>
+        <Lod fileName="Head_Male_Asian_LOD0_LODAuto.dme" paletteName="Head_Male_Asian_Lod1.dma" distance="3" />
+        <Lod distance="35" />
+    </Lods>
+    <CollisionType type="3099813281" />
+    <Usage actorUsage="2" borrowSkeleton="1" validatePcNpc="0" />
+    <HatHair type="Hair" coversFacialHair="0" />
+    <Shadows CheckShadowVisibility="0" />
+    <EquipType EquippedSlotName="Head" />
+    <ChildAttachSlotsEx />
+    <OcclusionData />
+    <MaterialType type="FLESH" />
+    <Invisible value="0" />
+    <DecalTintTranslations />
+</ActorRuntime>

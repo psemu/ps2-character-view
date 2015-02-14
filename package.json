@@ -1,0 +1,18 @@
+{
+  "name": "ps2-character-view",
+  "version": "0.1.0",
+  "description": "WebGL-based character model viewer for PlanetSide 2",
+  "author": {
+      "name" : "Jacob Seidelin", 
+      "email" : "jseidelin@nihilogic.dk", 
+      "url" : "http://github.com/jseidelin"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "debug": ">=1.0.2",
+    "bufferext": "git+ssh://git@github.com:jseidelin/bufferext.git",
+    "forgelight-dme": "git+ssh://git@github.com:psemu/forgelight-dme.git",
+    "jenkins-hash": "git+ssh://git@github.com:jseidelin/jenkins-hash.git",
+    "dataschema": "git+ssh://git@github.com:jseidelin/dataschema.git"
+  }
+}
